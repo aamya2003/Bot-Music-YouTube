@@ -3,21 +3,22 @@ from helpers import *
 
 
 
-# اذا لم يكن لديك قناة اترك هذا المتغير بدون قيمة
-mych = "" # @يوزر نيم  => username
+
+myus = "" # @يوزر نيم  => username
+# اذا ماعندك قناة خليه فارغ
 
 
 
 
-API_ID = 1234567
-API_HASH = ""
-bot_token = ""
+API_ID = 21678228
+API_HASH = "fa295f4a9f5ca7fa4a361f075b8642cb"
+bot_token = "7747517869:AAF3cJsk8AnYcqeEbj4cIf3uqQgC-4Ha5q8"
 
-# الايدي الخاص بالحساب المساعد
-Your_Id = 1234567
+Your_Id = 123456789
+
 
 userBot = Client(
-    name="user_bot",
+    name="babybot",
     api_id=API_ID,
     api_hash=API_HASH,  
     )
@@ -27,7 +28,7 @@ bot = Client(
     api_id=API_ID,
     api_hash=API_HASH,  
     bot_token=bot_token,
-    parse_mode=enums.ParseMode.HTML,
+    parse_mode=enums.ParseMode.HTML
     )
 
 app = PyTgCalls(
@@ -45,24 +46,6 @@ app.start()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @bot.on_message(filters.text)
 def handle_text(client: Client, message: Message):
     user_id = message.from_user.id
@@ -73,15 +56,6 @@ def handle_text(client: Client, message: Message):
     usermention = f"""<a href="tg://user?id={user_id}">{fname}</a>"""
     text = message.text
     
-
-
-    if USER.get_status("muted"):
-        try:
-            bot.delete_messages(chat_id, message.id)
-        except:
-            ...
-        return
-
 
     for key in syrian_responses.keys():
         if key == text:
@@ -95,137 +69,14 @@ def handle_text(client: Client, message: Message):
         ddyt = yUtube_data(user.id, chat_id)
 
         client.send_animation(chat_id, "mediaBot/bg.mp4", Sout_msg.format(username =usermention)
-                        ,reply_markup= InlineKeyboardMarkup(ddyt.btnsubC(mych, client, [])) if mych else None
+                        ,reply_markup= InlineKeyboardMarkup(ddyt.btnsubC(myus, client, [])) if myus else None
             )
 
 
     elif text.startswith(("/start ", '/start')) or text == "/start":
         message.reply("أهلاً وسهلاً في بوت الميوزك والحماية!\n\nاكتب اسم أغنية بعد كلمة تحميل أو تنزيل، مثال: تحميل يا زين ياللي تعدينا.\n\nوأوامر الحماية: كتم، طرد، حظر.\n\nأي كلمة مثل 'اسكت' أو 'اخرس'، البوت بيرد عليك بردود سورية طريفة.")
- 
-
-    elif text == "طرد":
-        admin = client.get_chat_member(chat_id, user_id)
-        ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
         
-        if not ISADMIN:
-            return message.reply(
-                text=Alert_Admin_msg.format(action="𝘀𝗲𝗮𝗿𝗰𝗵", usermention= usermention),
-            )
-        if  ddtyt.is_admin(bot_token):
-            return message.reply(
-                text=Cannaot_Use_Command_msg,
-            )
-        if USER.get_status() == "banned":
-            return message.reply(
-                text=User_Has_Been_msg.format("state", "طرده مسبقا"),
-            )
-        USER.update("banned")
-        message.reply(
-            text=User_Has_Been_msg.format("state", "طرده"),
-        )
-        try:
-            client.ban_chat_member(chat_id, user_id)
-        except:
-            ...
-        return
-
-    elif text == "حظر":
-        admin = client.get_chat_member(chat_id, user_id)
-        ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
-        
-        if not ISADMIN:
-            return message.reply(
-                text=Alert_Admin_msg.format(action="𝘀𝗲𝗮𝗿𝗰𝗵", usermention= usermention),
-            )
-        if  ddtyt.is_admin(bot_token):
-            return message.reply(
-                text=Cannaot_Use_Command_msg,
-            )
-        if USER.get_status() == "banned":
-            return message.reply(
-                text=User_Has_Been_msg.format("state", "طرده مسبقا"),
-            )
-        USER.update("banned")
-        message.reply(
-            text=User_Has_Been_msg.format("state", "حظره"),
-        )
-        try:
-            client.ban_chat_member(chat_id, user_id)
-        except:
-            ...
-        return
-
-    elif text == "كتم":
-        admin = client.get_chat_member(chat_id, user_id)
-        ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
-        
-        if not ISADMIN:
-            return message.reply(
-                text=Alert_Admin_msg.format(action="𝘀𝗲𝗮𝗿𝗰𝗵", usermention= usermention),
-            )
-        if  ddtyt.is_admin(bot_token):
-            return message.reply(
-                text=Cannaot_Use_Command_msg,
-            )
-        if USER.get_status() == "muted":
-            return message.reply(
-                text=User_Has_Been_msg.format("state", "كتمه مسبقا"),
-            )
-        USER.update("muted")
-        message.reply(
-            text=User_Has_Been_msg.format("state", "كتمه"),
-        )
-        
-
-    elif text == "الغاء حظر":
-        admin = client.get_chat_member(chat_id, user_id)
-        ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
-        
-        if not ISADMIN:
-            return message.reply(
-                text=Alert_Admin_msg.format(action="𝘀𝗲𝗮𝗿𝗰𝗵", usermention= usermention),
-            )
-        if  ddtyt.is_admin(bot_token):
-            return message.reply(
-                text=Cannaot_Use_Command_msg,
-            )
-        if  USER.get_status() != "banned":
-            return message.reply(
-                text=User_Has_Been_msg.format("state", "فك حظره مسبقا"),
-            )
-        USER.update("memebr")
-        message.reply(
-            text=User_Has_Been_msg.format("state", "فك حظره"),
-        )
-        try:
-            client.unban_chat_member(chat_id, user_id)
-        except:
-            ...
-        return
-
-    elif text == "الغاء كتم":
-        admin = client.get_chat_member(chat_id, user_id)
-        ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
-        
-        if not ISADMIN:
-            return message.reply(
-                text=Alert_Admin_msg.format(action="𝘀𝗲𝗮𝗿𝗰𝗵", usermention= usermention),
-            )
-        if  ddtyt.is_admin(bot_token):
-            return message.reply(
-                text=Cannaot_Use_Command_msg,
-            )
-        if USER.get_status() != "muted":
-            return message.reply(
-                text=User_Has_Been_msg.format("state", "فك كتمه مسبقا"),
-            )
-        USER.update("memebr")
-        message.reply(
-            text=User_Has_Been_msg.format("state", "فك كتمه"),
-        )
-        return
-        
-        
+    
     elif text.startswith(('رن ')):
         admin = client.get_chat_member(chat_id, user_id)
         ISADMIN = str(admin.status) in ['ChatMemberStatus.ADMINISTRATOR', "ChatMemberStatus.OWNER"] 
@@ -285,7 +136,7 @@ def handle_text(client: Client, message: Message):
         data = ddtyt.word2links(message, search_query)
 
 
-        markup = ddtyt.generate_markup(data, f'yt_close {chat_id} {user_id}', message, mych, bot)
+        markup = ddtyt.generate_markup(data, f'yt_close {chat_id} {user_id}', message, myus, bot)
 
         emojis = ["😔", "💔", "✨", "⭐️"]        
         m = client.send_message(
@@ -382,7 +233,7 @@ def handle_text(client: Client, message: Message):
                 currentMusic['path']
             )
             btns = ddtyt.showTools(bot)
-            btns = ddtyt.btnsubC(mych, client, btns)
+            btns = ddtyt.btnsubC(myus, client, btns)
             mrkup = InlineKeyboardMarkup(btns)
 
             usermention = f"""<a href="tg://user?id={currentMusic['user_id']}">{currentMusic['fname']}</a>"""
@@ -445,7 +296,7 @@ def handle_text(client: Client, message: Message):
 
 
             btns = ddtyt.showTools(bot)
-            btns = ddtyt.btnsubC(mych, client, btns)
+            btns = ddtyt.btnsubC(myus, client, btns)
             mrkup = InlineKeyboardMarkup(btns)
 
             usermention = f"""<a href="tg://user?id={currentMusic['user_id']}">{currentMusic['fname']}</a>"""
@@ -613,7 +464,7 @@ def handle_callback(client: Client, call: CallbackQuery):
                 if i_d['id'] == ID:
                     ddtyt.set_value("data", i_d)
                     # dataMusic[key]['data'] = i_d
-                    mrkup = ddtyt.select_type_mrkup_yt(call, mych, client)
+                    mrkup = ddtyt.select_type_mrkup_yt(call, myus, client)
 
                     caption = ddtyt.detxt(i_d['title'], i_d['duration'])
 
@@ -666,7 +517,7 @@ def handle_callback(client: Client, call: CallbackQuery):
                 print("Yes")
                 client.delete_messages(chat_id, m.id)
                 btns = ddtyt.showTools(bot)
-                btns = ddtyt.btnsubC(mych, client, btns)
+                btns = ddtyt.btnsubC(myus, client, btns)
                 mrkup = InlineKeyboardMarkup(btns)
                 m = client.send_photo(
                 chat_id=chat_id,
@@ -698,7 +549,7 @@ def handle_callback(client: Client, call: CallbackQuery):
 
                 # start create mrkup
                 btns = ddtyt.showTools(bot)
-                btns = ddtyt.btnsubC(mych, client, btns)
+                btns = ddtyt.btnsubC(myus, client, btns)
                 mrkup = InlineKeyboardMarkup(btns)
                 # end create mrkup
 
@@ -809,7 +660,7 @@ def handle_callback(client: Client, call: CallbackQuery):
 
 
             btns = ddtyt.showTools(bot)
-            btns = ddtyt.btnsubC(mych, client, btns)
+            btns = ddtyt.btnsubC(myus, client, btns)
             mrkup = InlineKeyboardMarkup(btns)
             usermention = f"""<a href="tg://user?id={currentMusic['user_id']}">{currentMusic['fname']}</a>"""
             caption = ddtyt.detxt(currentMusic['title'], currentMusic['duration']) +Song_Is_Requested_msg.format(usermention=usermention)
@@ -857,7 +708,7 @@ def handle_callback(client: Client, call: CallbackQuery):
 
 
             btns = ddtyt.showTools(bot)
-            btns = ddtyt.btnsubC(mych, client, btns)
+            btns = ddtyt.btnsubC(myus, client, btns)
             mrkup = InlineKeyboardMarkup(btns)
             usermention = f"""<a href="tg://user?id={currentMusic['user_id']}">{currentMusic['fname']}</a>"""
             caption = ddtyt.detxt(currentMusic['title'], currentMusic['duration']) + Song_Is_Requested_msg.format(usermention=usermention)
@@ -989,7 +840,7 @@ def handle_text(client: Client, message: Message):
         client.send_photo(chat_id, "mediaBot/background.jpg", Bot_Join_msg.format(
             username =user.first_name,
             name =  usermention,
-            grname = message.chat.title),reply_markup= InlineKeyboardMarkup(ddyt.btnsubC(mych, client, []) if mych else None)
+            grname = message.chat.title),reply_markup= InlineKeyboardMarkup(ddyt.btnsubC(myus, client, []) if myus else None)
             )
 
 @bot.on_message( filters=filters.video_chat_started)
@@ -1053,11 +904,11 @@ async def  stream_end_handler(_: PyTgCalls, update: StreamEnded):
             )
             ddtyt = yUtube_data('me', chat_id)
             btns = ddtyt.showTools(bot)
-            if mych:
-                name = await bot.get_chat(mych)
+            if myus:
+                name = await bot.get_chat(myus)
                 name = name.title
                 btns.append([
-                        InlineKeyboardButton(text=f'. {name} .', callback_data=f'https://t.me/{mych}'),
+                        InlineKeyboardButton(text=f'. {name} .', callback_data=f'https://t.me/{myus}'),
                     ],)
 
 
