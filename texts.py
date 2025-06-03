@@ -113,7 +113,3 @@ syrian_responses = {
     ])
 }
 
-Cannaot_Use_Command_msg = "⊱ عذرا, الشخص الذي تحاول استخدام الامر عليه, هو <b>مشرف</b> ولا يمكن تطبيقه عليه."
-
-User_Has_Been_msg = "⊱ عذرا, المستخدم تم <b>state</b>!"
-
