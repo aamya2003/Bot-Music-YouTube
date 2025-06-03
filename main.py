@@ -10,9 +10,9 @@ myus = "" # @يوزر نيم  => username
 
 
 
-API_ID = 21678228
-API_HASH = "fa295f4a9f5ca7fa4a361f075b8642cb"
-bot_token = "7747517869:AAF3cJsk8AnYcqeEbj4cIf3uqQgC-4Ha5q8"
+API_ID = 1234
+API_HASH = ""
+bot_token = ""
 
 Your_Id = 123456789
 
