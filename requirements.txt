@@ -1,4 +1,6 @@
-youtube-search-python
+youtube-search
 pyTelegramBotAPI
 yt-dlp
 requests
+pyrogram
+py-tgcalls
