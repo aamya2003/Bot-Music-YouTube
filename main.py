@@ -92,10 +92,7 @@ def handle_text(client: Client, message: Message):
     
 
         try:
-            print(chat_id)
-            print(Your_Id)
             c = ddtyt.is_in_chat(bot_token, Your_Id)
-            print(c)
             if not c:
                 raise Exception("error")
         except Exception as e:
@@ -105,6 +102,7 @@ def handle_text(client: Client, message: Message):
                 text=Help_User_Invite_msg,
             )
             try:
+                
                 if not ("The user is already a participant of this chat" in str(e)):
                     invite_link = client.export_chat_invite_link(chat_id)
                     userBot.join_chat(invite_link)

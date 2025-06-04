@@ -158,7 +158,7 @@ class yUtube_data:
 
 
     def is_in_chat(self, bot_token, us):
-        checked = ['creator', 'administrator', 'memebr']
+        checked = ['creator', 'administrator', 'member']
         url = f'https://api.telegram.org/bot{bot_token}/getChatMember?chat_id={self.chat_id}&user_id={us}'
         status = requests.get(url)
         data = status.json()
