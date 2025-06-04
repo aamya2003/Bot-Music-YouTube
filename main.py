@@ -14,7 +14,7 @@ API_ID = 1234
 API_HASH = ""
 bot_token = ""
 
-Your_Id = 123456789
+Your_Id = 1234
 
 
 userBot = Client(

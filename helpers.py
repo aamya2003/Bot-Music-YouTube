@@ -103,10 +103,12 @@ class yUtube_data:
         options = {
             'quiet': True,
             'noplaylist': True,
-            'skip_download': True, 
+            'skip_download': True,
+
         }
 
-        format_selector = 'bestaudio[ext=m4a]/bestaudio/best' if is_audio else 'best'
+
+        format_selector = 'bestaudio/best' if is_audio else 'best'
 
         options['format'] = format_selector
 
